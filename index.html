@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby_Discovery_v1.0.exe - Proyecto Secreto</title>
+    <title>Proyecto_Bebe_v1.0.exe - Mensaje Confidencial</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -31,23 +31,23 @@
             font-family: 'Fredoka One', cursive;
         }
 
-        /* Background grid pattern for dev aesthetic */
+        /* Ambient tech background pattern */
         .bg-grid {
-            background-image: radial-gradient(rgba(244, 114, 182, 0.15) 1px, transparent 0);
+            background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 0);
             background-size: 24px 24px;
         }
 
-        /* Glassmorphism effects */
+        /* Glassmorphism panel styling */
         .glass-panel {
-            background: rgba(30, 41, 59, 0.75);
+            background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
-        /* Floating Balloon Animation */
+        /* Floating Animation for icons */
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(4deg); }
         }
 
         .animate-float {
@@ -58,13 +58,9 @@
             animation: float 5s ease-in-out 1.5s infinite;
         }
 
-        /* Custom glowing text */
+        /* Glowing text effects */
         .glow-pink {
-            text-shadow: 0 0 20px rgba(244, 114, 182, 0.6), 0 0 40px rgba(236, 72, 153, 0.4);
-        }
-
-        .glow-cyan {
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            text-shadow: 0 0 20px rgba(244, 114, 182, 0.7), 0 0 40px rgba(236, 72, 153, 0.5);
         }
 
         /* Terminal Cursor Blink */
@@ -76,157 +72,193 @@
             50% { opacity: 0; }
         }
 
-        /* Pulse glow for main action button */
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 15px rgba(236, 72, 153, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.8), 0 0 45px rgba(244, 114, 182, 0.6); }
+        /* Half-Blue Half-Pink Button Styles */
+        .btn-split-surprise {
+            background: linear-gradient(110deg, #38bdf8 0%, #38bdf8 48%, #ffffff 48%, #ffffff 52%, #f472b6 52%, #f472b6 100%);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), 0 0 20px rgba(244, 114, 182, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .pulse-btn {
-            animation: pulse-glow 2s infinite;
+        .btn-split-surprise:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6), 0 0 30px rgba(244, 114, 182, 0.6);
+        }
+
+        .btn-split-surprise:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Custom scrollbar for terminal */
+        #consoleLogs::-webkit-scrollbar {
+            width: 6px;
+        }
+        #consoleLogs::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        #consoleLogs::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-grid min-h-screen flex flex-col items-center justify-center p-4 relative overflow-y-auto">
+<body class="bg-grid min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-y-auto">
 
-    <!-- Background Floating Decorations (Hidden during initial state, show later or subtle ambient) -->
-    <div class="fixed top-10 left-10 text-pink-400/20 text-6xl animate-float pointer-events-none">
+    <!-- Ambient background icons -->
+    <div class="fixed top-8 left-8 text-sky-400/10 text-5xl sm:text-6xl animate-float pointer-events-none">
         <i class="fa-solid fa-code"></i>
     </div>
-    <div class="fixed bottom-12 right-10 text-pink-400/20 text-6xl animate-float-delayed pointer-events-none">
+    <div class="fixed top-12 right-10 text-pink-400/10 text-5xl sm:text-6xl animate-float-delayed pointer-events-none">
         <i class="fa-solid fa-heart"></i>
     </div>
-    <div class="fixed bottom-10 left-12 text-blue-400/10 text-5xl animate-float pointer-events-none">
+    <div class="fixed bottom-10 left-10 text-pink-400/10 text-5xl sm:text-6xl animate-float-delayed pointer-events-none">
         <i class="fa-solid fa-baby"></i>
     </div>
+    <div class="fixed bottom-10 right-8 text-sky-400/10 text-5xl sm:text-6xl animate-float pointer-events-none">
+        <i class="fa-solid fa-laptop-code"></i>
+    </div>
 
-    <!-- MAIN APP CONTAINER -->
-    <main class="w-full max-w-3xl my-auto z-10">
+    <!-- MAIN CARD CONTAINER -->
+    <main class="w-full max-w-2xl my-auto z-10">
 
-        <!-- IDE / Terminal Window Box -->
-        <div id="appBox" class="glass-panel rounded-2xl shadow-2xl overflow-hidden transition-all duration-700 border border-slate-700/60">
+        <!-- IDE / Terminal Window -->
+        <div id="appBox" class="glass-panel rounded-2xl shadow-2xl overflow-hidden transition-all duration-700 border border-slate-700/70">
             
-            <!-- Window Top Bar -->
-            <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-700/50 flex items-center justify-between">
+            <!-- Window Header -->
+            <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-700/60 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors"></div>
-                    <span class="text-xs font-code text-slate-400 ml-2 hidden sm:inline">bash - baby_discovery_v1.0.exe</span>
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="text-xs font-code text-slate-400 ml-2">consola - revelacion_bebe.exe</span>
                 </div>
-                <div class="flex items-center space-x-2 text-xs font-code text-slate-400">
-                    <span class="bg-slate-800 px-2 py-1 rounded text-pink-400 border border-pink-500/20"><i class="fa-solid fa-code-branch mr-1"></i>main</span>
-                    <span class="text-slate-500">|</span>
-                    <span id="statusBadge" class="text-yellow-400"><i class="fa-solid fa-circle-dot mr-1 animate-pulse"></i>LOCKED</span>
+                <div class="flex items-center space-x-2 text-xs font-code">
+                    <span class="bg-slate-800 px-2.5 py-1 rounded-md text-amber-400 border border-amber-500/30 flex items-center gap-1.5">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <span>rama-principal</span>
+                    </span>
+                    <span id="statusBadge" class="text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-semibold">
+                        <i class="fa-solid fa-lock mr-1"></i>ENCRIPTADO
+                    </span>
                 </div>
             </div>
 
-            <!-- SECTION 1: Initial Screen (IDE & Trigger) -->
-            <div id="screenInitial" class="p-6 sm:p-8 space-y-6">
-                <!-- Welcome Title -->
+            <!-- SECCIÓN 1: PANTALLA INICIAL (CÓDIGO Y BOTÓN MITAD CELESTE / MITAD ROSA) -->
+            <div id="screenInitial" class="p-5 sm:p-8 space-y-6">
+                <!-- Header Title -->
                 <div class="text-center space-y-2">
-                    <div class="inline-flex items-center gap-2 bg-pink-500/10 text-pink-400 border border-pink-500/20 px-3 py-1 rounded-full text-xs font-code font-semibold">
-                        <i class="fa-solid fa-flask"></i> PROYECTO CONFIDENCIAL FAMILIAR
+                    <div class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full text-xs font-code font-medium">
+                        <i class="fa-solid fa-shield-cat"></i> PROYECTO CONFIDENCIAL FAMILIAR
                     </div>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                         Compilando un nuevo integrante...
                     </h1>
-                    <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
-                        Querida familia, hemos estado programando en secreto una actualización muy especial para nuestras vidas.
+                    <p class="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                        ¡Hola familia! Como ingeniero en software programé en secreto una actualización muy especial para nuestras vidas.
                     </p>
                 </div>
 
-                <!-- Fake Code Snippet Display -->
-                <div class="bg-slate-950/80 rounded-xl p-4 sm:p-5 font-code text-xs sm:text-sm text-slate-300 border border-slate-800 shadow-inner overflow-x-auto relative">
-                    <div class="absolute top-3 right-3 text-slate-600 text-xs">
-                        JS/ECMAScript 2026
+                <!-- Code Block Display -->
+                <div class="bg-slate-950 rounded-xl p-4 sm:p-5 font-code text-xs sm:text-sm text-slate-300 border border-slate-800/80 shadow-inner overflow-x-auto relative">
+                    <div class="absolute top-3 right-3 text-slate-500 text-[10px] sm:text-xs">
+                        javascript_es2026.js
                     </div>
                     <div class="space-y-1">
-                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">familyTree</span> = <span class="text-purple-400">require</span>(<span class="text-emerald-300">'./love_and_family'</span>);</p>
-                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">newBaby</span> = <span class="text-purple-400">new</span> <span class="text-yellow-300">Baby</span>({</p>
-                        <p class="pl-4"><span class="text-sky-300">parents</span>: [<span class="text-emerald-300">'Papá'</span>, <span class="text-emerald-300">'Mamá'</span>],</p>
-                        <p class="pl-4"><span class="text-sky-300">grandparents</span>: [<span class="text-emerald-300">'Los Mejores Abuelos del Mundo'</span>],</p>
-                        <p class="pl-4"><span class="text-sky-300">status</span>: <span class="text-emerald-300">'Loading...'</span>,</p>
-                        <p class="pl-4"><span class="text-sky-300">gender</span>: <span class="text-pink-400 font-bold">process.env.BABY_GENDER</span> <span class="text-slate-500">// [ENCRIPTADO]</span></p>
+                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">arbolGenealogico</span> = <span class="text-purple-400">requerir</span>(<span class="text-emerald-300">'./familia'</span>);</p>
+                        <p><span class="text-purple-400">const</span> <span class="text-blue-400">nuevoBebe</span> = <span class="text-purple-400">nuevo</span> <span class="text-yellow-300">Integrante</span>({</p>
+                        <p class="pl-4"><span class="text-sky-300">padres</span>: [<span class="text-emerald-300">'Mamá'</span>, <span class="text-emerald-300">'Papá'</span>],</p>
+                        <p class="pl-4"><span class="text-sky-300">abuelos</span>: [<span class="text-emerald-300">'Los mejores del mundo'</span>],</p>
+                        <p class="pl-4"><span class="text-sky-300">estado</span>: <span class="text-emerald-300">'En desarrollo...'</span>,</p>
+                        <p class="pl-4"><span class="text-sky-300">sexo</span>: <span class="text-amber-400 font-bold">proceso.env.SEXO_BEBE</span> <span class="text-slate-500">// [ENCRIPTADO]</span></p>
                         <p>});</p>
-                        <p class="pt-2 text-slate-500"><span class="text-slate-600">// Haz clic abajo para desencriptar los datos de la ecografía</span></p>
-                        <p class="text-pink-400 flex items-center gap-1">
-                            <span>> awaiting_execution_</span>
-                            <span class="w-2 h-4 bg-pink-400 inline-block cursor-blink"></span>
+                        <p class="pt-2 text-slate-500"><span class="text-slate-600">// Haz clic abajo para iniciar el despliegue y revelar el sexo</span></p>
+                        <p class="text-sky-400 flex items-center gap-1">
+                            <span>> esperando_ejecucion_</span>
+                            <span class="w-2 h-4 bg-sky-400 inline-block cursor-blink"></span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Action Button -->
+                <!-- Split Blue/Pink Action Button -->
                 <div class="text-center pt-2">
-                    <button id="btnStart" onclick="startProcess()" class="pulse-btn bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transform active:scale-95 transition-all flex items-center justify-center gap-3 mx-auto w-full sm:w-auto">
-                        <i class="fa-solid fa-terminal text-xl"></i>
-                        <span>Ejecutar Algoritmo de Revelación</span>
-                        <i class="fa-solid fa-arrow-right"></i>
+                    <button id="btnStart" onclick="startProcess()" class="btn-split-surprise w-full sm:w-auto px-6 py-4 rounded-xl font-bold text-slate-900 text-base sm:text-lg flex items-center justify-center gap-3 mx-auto shadow-2xl group cursor-pointer">
+                        <!-- Left Icon (Blue Side) -->
+                        <span class="bg-slate-900 text-sky-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mars text-lg"></i>
+                        </span>
+
+                        <!-- Button Text in Center -->
+                        <span class="font-extrabold tracking-wide uppercase px-2 text-slate-950">
+                            ¿NIÑO O NIÑA? ¡INICIAR REVELACIÓN!
+                        </span>
+
+                        <!-- Right Icon (Pink Side) -->
+                        <span class="bg-slate-900 text-pink-400 p-2 rounded-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-venus text-lg"></i>
+                        </span>
                     </button>
-                    <p class="text-xs text-slate-400 mt-3">
-                        <i class="fa-solid fa-shield-halved mr-1 text-pink-400"></i> Diseñado con amor por tu Ingeniero favorito
+                    <p class="text-xs text-slate-400 mt-3 font-code">
+                        <i class="fa-solid fa-terminal mr-1 text-sky-400"></i> Diseñado con amor por su Ingeniero en Software favorito
                     </p>
                 </div>
             </div>
 
-            <!-- SECTION 2: Interactive Terminal Loading Screen -->
-            <div id="screenLoading" class="p-6 sm:p-8 space-y-6 hidden">
+            <!-- SECCIÓN 2: PANTALLA DE CARGA Y LOGS DE TERMINAL EN ESPAÑOL -->
+            <div id="screenLoading" class="p-5 sm:p-8 space-y-6 hidden">
                 <div class="text-center space-y-2">
-                    <h2 class="text-2xl font-bold text-white flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-gear fa-spin text-pink-400"></i> Descompilando Secreto...
+                    <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gear fa-spin text-sky-400"></i> Descompilando el Gran Secreto...
                     </h2>
-                    <p class="text-slate-400 text-sm">Por favor espere mientras procesamos la muestra genética.</p>
+                    <p class="text-slate-300 text-sm">Por favor esperen mientras procesamos la información médica y genética.</p>
                 </div>
 
                 <!-- Progress Bar Container -->
                 <div class="space-y-2">
                     <div class="flex justify-between text-xs font-code text-slate-300">
-                        <span id="progressStep">Inicializando secuenciador de ADN...</span>
-                        <span id="progressPercentage" class="text-pink-400 font-bold">0%</span>
+                        <span id="progressStep">Iniciando secuenciador de ADN...</span>
+                        <span id="progressPercentage" class="text-sky-400 font-bold">0%</span>
                     </div>
                     <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-700">
-                        <div id="progressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full transition-all duration-300 w-0"></div>
+                        <div id="progressBar" class="h-full bg-gradient-to-r from-sky-400 via-indigo-500 to-pink-500 rounded-full transition-all duration-300 w-0"></div>
                     </div>
                 </div>
 
-                <!-- Real-time Console Log Terminal -->
-                <div class="bg-slate-950 rounded-xl p-4 font-code text-xs text-green-400 h-44 overflow-y-auto border border-slate-800 space-y-1.5 shadow-inner" id="consoleLogs">
-                    <div class="text-slate-500">// Inicio de logs de depuración del proyecto...</div>
+                <!-- Real-time Spanish Terminal Console -->
+                <div class="bg-slate-950 rounded-xl p-4 font-code text-xs text-emerald-400 h-48 overflow-y-auto border border-slate-800 space-y-2 shadow-inner" id="consoleLogs">
+                    <div class="text-slate-500">// Consola de depuración del sistema en tiempo real...</div>
                 </div>
             </div>
 
-            <!-- SECTION 3: The Big Reveal (It's a Girl!) -->
+            <!-- SECCIÓN 3: PANTALLA DE REVELACIÓN (¡ES UNA NIÑA!) -->
             <div id="screenReveal" class="p-6 sm:p-10 text-center space-y-6 hidden relative">
                 
-                <!-- Floating Decorative Hearts/Balloons SVG Background inside card -->
-                <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20 flex justify-between p-4">
+                <!-- Floating Ambient Icons inside card -->
+                <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-15 flex justify-between p-4">
                     <i class="fa-solid fa-heart text-pink-500 text-6xl animate-float"></i>
                     <i class="fa-solid fa-ribbon text-pink-400 text-7xl animate-float-delayed"></i>
                     <i class="fa-solid fa-baby-carriage text-pink-300 text-5xl animate-float"></i>
                 </div>
 
                 <!-- Top Badge -->
-                <div class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase shadow-md animate-bounce">
-                    <i class="fa-solid fa-sparkles mr-2"></i>¡COMPILACIÓN EXITOSA! <i class="fa-solid fa-sparkles ml-2"></i>
+                <div class="inline-block bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 text-white px-5 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase shadow-lg animate-bounce">
+                    <i class="fa-solid fa-sparkles mr-2"></i> ¡DESPLIEGUE EXITOSO EN PRODUCCIÓN! <i class="fa-solid fa-sparkles ml-2"></i>
                 </div>
 
-                <!-- Big Main Title -->
+                <!-- Main Reveal Announcement -->
                 <div class="space-y-3 relative z-10">
                     <p class="text-slate-300 text-lg sm:text-xl font-medium">
-                        El resultado de la prueba es...
+                        El resultado del análisis es...
                     </p>
                     
                     <div class="py-2">
                         <h1 class="text-5xl sm:text-7xl font-display text-pink-400 glow-pink tracking-wide transform scale-105 transition-transform">
                             ¡ES UNA NIÑA!
                         </h1>
-                        <p class="text-3xl sm:text-4xl mt-2">👧🎀💖</p>
+                        <p class="text-3xl sm:text-4xl mt-3">👧🎀💖</p>
                     </div>
                 </div>
 
-                <!-- Dedicated Message for Grandparents -->
-                <div class="bg-pink-950/40 border border-pink-500/30 rounded-2xl p-5 sm:p-6 text-pink-100 max-w-xl mx-auto shadow-xl backdrop-blur-md relative z-10 space-y-3">
+                <!-- Emotional Message for Grandparents and Family -->
+                <div class="bg-pink-950/40 border border-pink-500/40 rounded-2xl p-5 sm:p-6 text-pink-100 max-w-lg mx-auto shadow-xl backdrop-blur-md relative z-10 space-y-3">
                     <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto text-pink-300 text-2xl mb-1">
                         <i class="fa-solid fa-crown"></i>
                     </div>
@@ -234,66 +266,67 @@
                         ¡Felicidades, van a ser Abuelos!
                     </h3>
                     <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-light">
-                        Una pequeña princesa viene en camino a llenar nuestras vidas de risas, abrazos y amor infinito. ¡Prepárense para ser los mejores y más consentidores abuelos del mundo entero!
+                        Una hermosa princesa viene en camino a llenar nuestras vidas de alegría, sonrisas y momentos inolvidables. ¡Prepárense para consentirla mucho y ser los mejores abuelos del mundo!
                     </p>
                 </div>
 
-                <!-- Developer Touch / Replay Button -->
+                <!-- Replay Buttons -->
                 <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 relative z-10">
-                    <button onclick="triggerConfetti()" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-pink-300 font-semibold px-5 py-2.5 rounded-xl border border-pink-500/30 transition-all text-sm flex items-center justify-center gap-2">
+                    <button onclick="triggerConfetti()" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-pink-300 font-semibold px-5 py-2.5 rounded-xl border border-pink-500/30 transition-all text-sm flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>Lanzar más Confeti</span>
+                        <span>Lanzar más confeti</span>
                     </button>
-                    <button onclick="resetApp()" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white px-5 py-2.5 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                    <button onclick="resetApp()" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white px-5 py-2.5 rounded-xl transition-all text-sm flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-rotate-right"></i>
-                        <span>Repetir Revelación</span>
+                        <span>Repetir revelación</span>
                     </button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Footer signature -->
-        <div class="text-center mt-6 text-xs text-slate-500 font-code">
-            <p>Made with <i class="fa-solid fa-heart text-pink-500"></i> by Dad Developer | <span class="text-slate-400">Version 1.0.0</span></p>
+        <!-- Footer Signature -->
+        <div class="text-center mt-6 text-xs text-slate-400 font-code">
+            <p>Hecho con <i class="fa-solid fa-heart text-pink-500"></i> por su futuro Papá Ingeniero | <span class="text-slate-300">Versión 1.0.0</span></p>
         </div>
     </main>
 
     <script>
-        // Execution steps and logs simulation for developer effect
+        // Spanish console log simulation
         const logs = [
-            { text: "Initializing Baby_Discovery_v1.0.exe...", delay: 200 },
-            { text: "Loading core modules: [love.js, genetics.js, ultrasound.js]...", delay: 500 },
-            { text: "Connecting to Ultrasound Data Source... Connected!", delay: 900 },
-            { text: "Analyzing Chromosomes...", delay: 1300 },
-            { text: "Detected pair: [X Chromosome] found...", delay: 1800 },
-            { text: "Scanning second chromosome...", delay: 2300 },
-            { text: "Detected second pair: [X Chromosome] found!", delay: 2800 },
-            { text: "Matches found: XX Pattern confirmed.", delay: 3200 },
-            { text: "Calculating sweetness levels: 100% MAXIMUM!", delay: 3700 },
-            { text: "Decrypting final secret message...", delay: 4100 },
-            { text: "Compilation successful! Unlocking gender output now...", delay: 4500 }
+            { text: "Iniciando sistema de revelación revelacion_bebe.exe...", delay: 200 },
+            { text: "Cargando módulos principales: [amor.js, genetica.js, ecografia.js]...", delay: 500 },
+            { text: "Conectando con el servidor de la ecografía... ¡Conexión establecida!", delay: 900 },
+            { text: "Analizando información genética de los papás...", delay: 1300 },
+            { text: "Detectado primer cromosoma: [Cromosoma X] identificado.", delay: 1800 },
+            { text: "Escaneando segundo cromosoma...", delay: 2300 },
+            { text: "Detectado segundo cromosoma: [Cromosoma X] confirmado.", delay: 2800 },
+            { text: "Coincidencia de patrón: XX (Infinitas sonrisas y vestidos en camino).", delay: 3200 },
+            { text: "Calculando niveles de ternura e ilusión: 100% MÁXIMO ALCANZADO.", delay: 3700 },
+            { text: "Desencriptando mensaje confidencial para la familia...", delay: 4100 },
+            { text: "¡Compilación exitosa! Revelando resultado final ahora...", delay: 4500 }
         ];
 
-        // Progress messages during loading bar animation
+        // Spanish loading bar step descriptions
         const steps = [
             { percent: 10, label: "Iniciando análisis genético..." },
-            { percent: 30, label: "Leyendo la ecografía..." },
+            { percent: 30, label: "Leyendo datos de la ecografía..." },
             { percent: 55, label: "Procesando pares de cromosomas..." },
-            { percent: 80, label: "Decodificando ternura al 100%..." },
+            { percent: 80, label: "Verificando niveles de amor familiar..." },
             { percent: 100, label: "¡Secreto listo para ser revelado!" }
         ];
 
-        let logIndex = 0;
-
-        // Function to start the reveal sequence
+        // Start execution process
         function startProcess() {
             document.getElementById('screenInitial').classList.add('hidden');
             document.getElementById('screenLoading').classList.remove('hidden');
-            document.getElementById('statusBadge').innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i>RUNNING`;
-            document.getElementById('statusBadge').className = "text-pink-400 font-semibold";
+            
+            // Update top bar status
+            const badge = document.getElementById('statusBadge');
+            badge.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i>PROCESANDO`;
+            badge.className = "text-sky-400 bg-sky-400/10 px-2.5 py-1 rounded-md border border-sky-400/20 font-semibold";
 
-            // Run console logs log by log
+            // Run console logs
             runLogs();
             // Animate Progress Bar
             animateProgress();
@@ -305,8 +338,8 @@
             logs.forEach(item => {
                 setTimeout(() => {
                     const line = document.createElement('div');
-                    line.className = "flex items-center gap-2";
-                    line.innerHTML = `<span class="text-pink-500 font-bold">></span> <span>${item.text}</span>`;
+                    line.className = "flex items-start gap-2";
+                    line.innerHTML = `<span class="text-sky-400 font-bold font-code">></span> <span class="leading-tight">${item.text}</span>`;
                     consoleBox.appendChild(line);
                     consoleBox.scrollTop = consoleBox.scrollHeight;
                 }, item.delay);
@@ -323,29 +356,30 @@
                     progressBar.style.width = `${step.percent}%`;
                     progressPercent.textContent = `${step.percent}%`;
                     progressStep.textContent = step.label;
-                }, step.percent * 42); // Scaled time to match log timing (~4.5s total)
+                }, step.percent * 42);
             });
 
-            // Final Trigger after loading finishes
+            // Trigger final reveal after logs finish (~4.8s)
             setTimeout(() => {
                 revealGender();
             }, 4800);
         }
 
-        // Final Reveal Screen function
+        // Final Reveal Screen
         function revealGender() {
             document.getElementById('screenLoading').classList.add('hidden');
             document.getElementById('screenReveal').classList.remove('hidden');
             
             // Update Window Badge
-            document.getElementById('statusBadge').innerHTML = `<i class="fa-solid fa-circle-check mr-1 text-emerald-400"></i>REVEALED`;
-            document.getElementById('statusBadge').className = "text-emerald-400 font-semibold";
+            const badge = document.getElementById('statusBadge');
+            badge.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i>REVELADO`;
+            badge.className = "text-pink-400 bg-pink-400/10 px-2.5 py-1 rounded-md border border-pink-400/20 font-semibold";
 
-            // Trigger Massive Pink/Gold Confetti Explosion
+            // Fire Confetti
             triggerConfetti();
         }
 
-        // Custom Pink and Gold Confetti Effect
+        // Pink, Rose Gold, and Golden Confetti explosion
         function triggerConfetti() {
             const duration = 3.5 * 1000;
             const animationEnd = Date.now() + duration;
@@ -370,33 +404,34 @@
 
                 const particleCount = 50 * (timeLeft / duration);
 
-                // Pink, Rose Gold, Gold, and Purple theme colors for a girl
+                // Festive Pink and Gold colors
                 confetti(Object.assign({}, defaults, { 
                     particleCount, 
                     origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 },
-                    colors: ['#f472b6', '#ec4899', '#fb7185', '#fbbf24', '#e879f9']
+                    colors: ['#f472b6', '#ec4899', '#fb7185', '#fbbf24', '#f43f5e']
                 }));
                 confetti(Object.assign({}, defaults, { 
                     particleCount, 
                     origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 },
-                    colors: ['#f472b6', '#ec4899', '#fb7185', '#fbbf24', '#e879f9']
+                    colors: ['#f472b6', '#ec4899', '#fb7185', '#fbbf24', '#f43f5e']
                 }));
             }, 250);
         }
 
-        // Reset application to re-live the experience
+        // Reset application
         function resetApp() {
             document.getElementById('screenReveal').classList.add('hidden');
             document.getElementById('screenInitial').classList.remove('hidden');
             
-            // Clear previous console logs
-            document.getElementById('consoleLogs').innerHTML = '<div class="text-slate-500">// Inicio de logs de depuración del proyecto...</div>';
+            // Reset logs and progress
+            document.getElementById('consoleLogs').innerHTML = '<div class="text-slate-500">// Consola de depuración del sistema en tiempo real...</div>';
             document.getElementById('progressBar').style.width = '0%';
             document.getElementById('progressPercentage').textContent = '0%';
             
             // Reset badge
-            document.getElementById('statusBadge').innerHTML = `<i class="fa-solid fa-circle-dot mr-1 animate-pulse"></i>LOCKED`;
-            document.getElementById('statusBadge').className = "text-yellow-400";
+            const badge = document.getElementById('statusBadge');
+            badge.innerHTML = `<i class="fa-solid fa-lock mr-1"></i>ENCRIPTADO`;
+            badge.className = "text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20 font-semibold";
         }
     </script>
 </body>
